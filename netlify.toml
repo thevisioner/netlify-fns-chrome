@@ -1,0 +1,2 @@
+[functions.generate]
+  external_node_modules = ["chrome-aws-lambda"]
