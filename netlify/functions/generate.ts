@@ -7,16 +7,21 @@ const handler: Handler = async (
   _context: HandlerContext
 ) => {
   console.log("event.body", event.body);
+
   if (!event.body) {
     return { statusCode: 400, body: "Invalid request" };
   }
+
+  const isDevContext = process.env.CONTEXT === "dev";
 
   try {
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
+      executablePath: isDevContext
+        ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+        : await chromium.executablePath,
+      headless: isDevContext ? true : chromium.headless,
       ignoreHTTPSErrors: true,
     });
     const { url } = JSON.parse(event.body);

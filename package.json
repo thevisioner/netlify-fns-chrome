@@ -10,5 +10,8 @@
     "@netlify/functions": "^1.4.0",
     "chrome-aws-lambda": "10.1.0",
     "puppeteer-core": "10.4.0"
+  },
+  "devDependencies": {
+    "puppeteer": "^10.4.0"
   }
 }
