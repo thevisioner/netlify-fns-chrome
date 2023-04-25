@@ -6,6 +6,11 @@ const handler: Handler = async (
   event: HandlerEvent,
   _context: HandlerContext
 ) => {
+  console.log("event.body", event.body);
+  if (!event.body) {
+    return { statusCode: 400, body: "Invalid request" };
+  }
+
   try {
     const browser = await puppeteer.launch({
       args: chromium.args,
@@ -14,9 +19,6 @@ const handler: Handler = async (
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
-    if (!event.body) {
-      return { statusCode: 400, body: "Invalid request" };
-    }
     const { url } = JSON.parse(event.body);
     const page = await browser.newPage();
     await page.goto(url);
