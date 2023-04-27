@@ -1,5 +1,7 @@
 # Run Puppeteer in Netlify Functions
 
+A working example of running Puppeteer in Netlify Functions using [chrome-aws-lambda](https://github.com/alixaxel/chrome-aws-lambda).
+
 ## Function bundling
 
 Use the `netlify.toml` to flag "chrome-aws-lambda" as an external node module for functions that uses it.
